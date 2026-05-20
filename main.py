@@ -127,6 +127,8 @@ def verify_admin(x_admin_password: Optional[str] = Header(None)):
 # ─── Routes ───────────────────────────────────────────────────────────────────
 @app.get("/", tags=["Health"])
 def root():
+    if os.path.exists("index.html"):
+        return FileResponse("index.html")
     return {
         "status": "online",
         "service": "Portfolio API",
